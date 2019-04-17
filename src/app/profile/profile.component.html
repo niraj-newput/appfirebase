@@ -1,0 +1,168 @@
+<div class="row">
+	<div class="col-md-8">
+		<div class="card">
+			<div class="card-header card-header-primary">
+				<h4 class="card-title">Edit Profile</h4>
+				<p class="card-category">Complete your Profile</p>
+			</div>
+			<div class="card-body">
+				<form id="flatForm" [formGroup]="updateForm" (ngSubmit)="onSubmit(updateForm.value)">
+					<div class="form-row">
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="name">Comapany</label>
+								<input type="text" class="form-control" formControlName="companyName"  name="" placeholder="Comapany Name" value="currentUser.companyName">
+							</div>
+						</div>
+						<!-- <div class="col-md-4">
+							<div class="form-group">
+								<label for="username">Username</label>
+								<input type="text" class="form-control" name="" placeholder="Username">
+							</div>
+						</div> -->
+						<!-- <div class="col-md-4">
+							<div class="form-group">
+								<label for="email">Email</label>
+								<input type="email" class="form-control" name="" placeholder="Email">
+							</div>
+						</div> -->
+					</div>
+					<!-- <div class="form-row">
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="name">Email</label>
+								<input type="email" class="form-control" name="email" placeholder="Email">
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="name">Password</label>
+								<input type="password" class="form-control" name="password" id="password" placeholder="Password">
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="confirm_password">Confirm Password</label>
+								<input type="password" class="form-control" name="cpassword" id="cpassword" placeholder="Confirm Password">
+							</div>
+						</div>
+					</div> -->
+					<div class="form-row">
+						<div class="col-12">
+							<div class="form-group">
+								<label for="address">Address</label>
+								<input type="text" name="address" formControlName="address" class="form-control" id="address" placeholder="Address 1">
+							</div>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="col-12">
+							<div class="form-group">
+								<label for="address">Permanent Address</label>
+								<input type="text" formControlName="perAddress" name="perAddress" class="form-control" id="perAddress" placeholder="Permanent Address 1">
+							</div>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="city">City</label>
+								<input type="text" class="form-control" formControlName="city" id="city" name="city">
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="selectState">State</label>
+								<select class="form-control" formControlName="state" name="selectState" id="selectState">
+									<option value="">Choose</option>
+									<option value="mp">Mp</option>
+									<option value="up">up</option>
+									<option value="mh">mh</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-2">
+							<div class="form-group">
+								<label for="zip">ZIP</label>
+								<input type="number" formControlName="zip" class="form-control" name="zipcode">
+							</div>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="col-12">
+							<div class="form-check">
+                                <label for="gridCheck" class="form-check-label">
+                                  <input class="form-check-input collapsed" type="checkbox"  id="gridCheck" data-toggle="collapse" data-target="#bankDetail" aria-controls="bankDetail" aria-expanded="false">
+                                  <span class="form-check-sign">
+                                    <span class="check"></span>
+                                  </span>
+                                  Add Bank Details
+                                </label>
+                              </div>
+					    
+					  </div>
+					</div>
+					<div class="collapse" id="bankDetail" style="">
+						<div class="form-row">
+					  <div class="col-3">
+					    <div class="form-group">
+					    	<label class="">Account No</label>
+					    	<input class="form-control" type="text" name="">
+					    </div>
+					  </div>
+					  <div class="col-3">
+					    <div class="form-group">
+					    	<label class="">Bank Name</label>
+					    	<input class="form-control" type="text" name="">
+					    </div>
+					  </div>
+					  <div class="col-3">
+					    <div class="form-group">
+					    	<label class="">IFSC code</label>
+					    	<input class="form-control" type="text" name="">
+					    </div>
+					  </div>
+					  <div class="col-3">
+					    <div class="form-group">
+					    	<label class="">Bank Code</label>
+					    	<input class="form-control" type="text" name="">
+					    </div>
+					  </div>
+					</div>
+					</div>
+					<div class="form-group">
+					    <div class="form-check">
+                            <label class="form-check-label">
+                              <input class="form-check-input" type="checkbox">
+                              <span class="form-check-sign">
+                                <span class="check"></span>
+                              </span>
+                              Check me out
+                            </label>
+                        </div>
+					</div>
+					<button type="submit" class="btn btn-primary rounded float-right"> Update Profile</button>
+				</form>
+				
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="card card-profile">
+			<div class="card-avatar">
+				<img class="img"  src="{{currentUser.imageUrl}}">
+
+			</div>
+			<input type="file" name="profile" (change)="uploadImg($event)" placeholder="file" #files>Add
+			<div class="card-body">
+				<small>CEO / CO-FOUNDER</small>
+				<h5 class="card-title">Alec Thomson</h5>
+				<p class="card-description">
+					Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+				</p>
+				<a href="#" class="btn btn-primary btn-rounded">FOLLOW</a>
+				
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,142 @@
+<div class="card">
+  <div class="card-body">
+
+    <form  [formGroup]="postForm" (ngSubmit)="savePost(postForm.value)">
+        <input type="text" formControlName="userId"  hidden/>
+        <input type="text" formControlName="firstName" value="{{currentUser.firstName}}" hidden/> 
+        <div class="row form-group">
+          <div class="col-12">
+            <label class="floating-label">Post Desc</label>
+            <textarea class="form-control" rows="3" formControlName="postDesc"></textarea>
+          </div>
+        </div>
+        <input  type="file" class="form-control" formControlName="img" (change)="selectImage($event)">
+       
+        <div class="row form-group">
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary"  >Add Post</button>
+          </div>
+        </div>
+
+    </form>
+    
+  
+    
+  </div>
+</div>
+<div class="card">
+  <div class="card-body">
+    <ul class="nav nav-pills nav-pills-warning" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active show" data-toggle="tab" href="#link1" role="tablist"> Post List </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#link2" role="tablist"> Photos </a>
+      </li>
+      
+    </ul>
+    <div class="tab-content tab-space">
+      <div class="tab-pane active show" id="link1"> 
+        <!-- <div class="card card-plain">
+            <div class="row" *ngFor="let post of postList">
+              <div class="col-md-4">
+                <div class="card-image">
+                  <img class="img" src="{{post.postImageUrl}}">
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h3 class="card-title">  {{post.postTitle}}</h3>
+                  <div class="card-descripton">
+                    {{post.postDesc}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+        <!-- <ul class="nav flex-column">
+          <li class="nav-item nav-link" *ngFor="let post of postList">
+           <p> {{post.postTitle}}</p>
+            <p>{{post.postDesc}}</p>
+
+            <div class="post-img-container" style="background-image: url({{post.postImageUrl}})" *ngIf="post.postImageUrl != ''">
+              <img class="post-img" src="{{post.postImageUrl}}"/>
+            </div>
+            <i (click)="deletePost(post._id)" class="material-icons">clear</i>
+          </li> 
+        </ul> -->
+          <div class="row">
+            <div class="col-lg-4 col-md-4" *ngFor="let post of postList">
+              <div class="card card-product">
+                <div class="card-header card-header-image">
+                  <img src="{{post.postImageUrl}}">
+                </div>
+                <div class="card-body">
+                  <div class="card-action text-center">
+                    <button class="btn btn-sm px-3 text-success" data-toggle="modal"  (click)="openModal(post._id)">
+                      <i class="material-icons" >edit</i>
+                    </button>
+                    <button class="btn btn-sm px-3 text-danger">
+                      <i (click)="postService.removePost(post._id)" class="material-icons">close</i>
+                    </button>
+                  </div>
+                  <h5 class="card-title">{{post.postTitle}}</h5>
+                  <div class="text-muted">
+                    {{post.postDesc}}
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+      
+
+      </div>
+      <div class="tab-pane" id="link2"> 
+       <div class="img-container" *ngFor="let img of imgList">
+         
+            <img src="{{img.url}}" alt="{{img.imgName}}"/>
+            <i (click)="removePhoto(img.imgName)" class="material-icons remove-img">clear</i>
+           
+       
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal" id="editModal" tabindex="-1" role="dialog" [ngStyle]="{'display':editModalOpen}">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <form  [formGroup]="postEditForm" (ngSubmit)="updatePost(postEditForm.value)">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit Post</h5>
+          <button type="button" class="close" data-dismiss="modal" (click)="closeModal()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+              <input type="text" formControlName="postId"  hidden/>
+              
+              <div class="row form-group">
+                <div class="col-12">
+                  <label class="floating-label">Post Desc</label>
+                  <input class="form-control" formControlName="postDesc" />
+                </div>
+              </div>
+              <div class="row form-group">
+                <div class="col-12">
+                 
+                </div>
+              </div>
+
+          
+        </div>
+        <div class="modal-footer">
+           <button type="submit" class="btn btn-primary"  >Save</button>
+          <button type="button" class="btn btn-secondary" (click)="closeModal()" data-dismiss="modal">Close</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

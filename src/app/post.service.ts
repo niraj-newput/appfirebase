@@ -22,7 +22,7 @@ export class PostService {
   	let self = this;
   	this.getPostById(id).then((res)=> {
   		console.log('get post id');
-  		console.log(self.storageRef)
+  		
   		let post = res.val();
   		console.log('postImages/'+post.imageName);
   		self.storage.storage.ref().child('postImages/'+post.imageName).delete().then((success) => {
@@ -35,7 +35,7 @@ export class PostService {
   	}, (error) => {
 
   	});
-  	
+
   }
 
   updatePost(value) {
